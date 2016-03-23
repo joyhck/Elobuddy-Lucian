@@ -1,0 +1,13 @@
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\bin\Release\GuTenTak_Lucian.exe.config
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\obj\Debug\GuTenTak_Lucian.Properties.Resources.resources
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\obj\Debug\GuTenTak_Lucian.csproj.GenerateResource.Cache
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\obj\Debug\GuTenTak_Lucian.csprojResolveAssemblyReference.cache
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\bin\Release\GuTenTak_Lucian.exe
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\bin\Release\GuTenTak_Lucian.pdb
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\bin\Release\EloBuddy.SDK.dll
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\bin\Release\SharpDX.Direct3D9.dll
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\bin\Release\SharpDX.dll
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\bin\Release\Newtonsoft.Json.dll
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\obj\Debug\GuTenTak_Lucian.exe
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\obj\Debug\GuTenTak_Lucian.pdb
+E:\Users\smart\Desktop\ez\Elobuddy - Lucian\bin\Release\EloBuddy.dll
