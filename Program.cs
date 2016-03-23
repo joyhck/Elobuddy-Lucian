@@ -117,7 +117,7 @@ namespace GuTenTak.Lucian
                 ModesMenu1.Add("LogicW", new ComboBox(" Basic W Logic ", 1, "AARange", "Always"));
                 ModesMenu1.Add("LogibE", new ComboBox(" Basic E Logic ", 1, "Faster", "AA -> E"));
                 ModesMenu1.Add("WColision", new ComboBox(" W Collision ", 1, "Colision", "No Colision"));
-                ModesMenu1.Add("LogicE", new ComboBox(" E Logic ", 0, "E to Mouse(Save position)", "E to Side", "E to Mouse"));
+                ModesMenu1.Add("LogicE", new ComboBox(" E Logic ", 0, "E to Mouse(Safe position)", "E to Side", "E to Mouse"));
 
                 ModesMenu1.AddSeparator();
                 ModesMenu1.AddLabel("AutoHarass Configs");
@@ -191,6 +191,7 @@ namespace GuTenTak.Lucian
                 DrawMenu = Menu.AddSubMenu("Draws", "DrawLucian");
                 DrawMenu.Add("drawA", new CheckBox(" Draw Real AA", true));
                 DrawMenu.Add("drawQ", new CheckBox(" Draw Q", true));
+                DrawMenu.Add("drawQext", new CheckBox(" Draw Q ext", true));
                 DrawMenu.Add("drawW", new CheckBox(" Draw W", true));
                 DrawMenu.Add("drawE", new CheckBox(" Draw E", true));
                 DrawMenu.Add("drawR", new CheckBox(" Draw R", false));
@@ -213,6 +214,13 @@ namespace GuTenTak.Lucian
                     if (Q.IsReady() && Q.IsLearned)
                     {
                         Circle.Draw(Color.White, Q.Range, Player.Instance.Position);
+                    }
+                }
+                if (DrawMenu["drawQext"].Cast<CheckBox>().CurrentValue)
+                {
+                    if (Q.IsReady() && Q.IsLearned)
+                    {
+                        Circle.Draw(Color.White, Q1.Range, Player.Instance.Position);
                     }
                 }
                 if (DrawMenu["drawW"].Cast<CheckBox>().CurrentValue)
