@@ -14,7 +14,7 @@ namespace GuTenTak.Lucian
     {
         public static object HeroManager { get; private set; }
 
-        // CastQ
+        // CastQ QWE Credits Lazy Lucian
         public static void CastQ()
         {
             var target = TargetSelector.SelectedTarget != null &&
