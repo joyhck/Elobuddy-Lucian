@@ -246,8 +246,6 @@ namespace GuTenTak.Lucian
 
         public static void Combo()
         {
-            if (ModesMenu1["LogicAA"].Cast<ComboBox>().CurrentValue == 0)
-            {
                 var target = TargetSelector.SelectedTarget != null &&
                            TargetSelector.SelectedTarget.Distance(ObjectManager.Player) < 2000
                   ? TargetSelector.SelectedTarget
@@ -265,75 +263,14 @@ namespace GuTenTak.Lucian
 
                 if (Q.IsReady() && ModesMenu1["ComboQ"].Cast<CheckBox>().CurrentValue)
                 {
-                        if (Orbwalker.IsAutoAttacking && !PassiveUp)
-                        {
-                            CastQ();
-                        }
-                        if (!ObjectManager.Player.IsInAutoAttackRange(target))
-                        {
-                            CastQ();
-                            CastExtendedQ();
-                        }
-
-                    }
-
-
-                if (ModesMenu1["LogibE"].Cast<ComboBox>().CurrentValue == 1)
-                {
-
-                    if (E.IsReady() && ModesMenu1["ComboE"].Cast<CheckBox>().CurrentValue)
-                    {
-                        if (Orbwalker.IsAutoAttacking && !PassiveUp)
-                        {
-                            if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 1)
-                            {
-                                CastEcombo();
-                            }
-                            if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 0)
-                            {
-                                CastEmouse();
-                            }
-                            if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 2)
-                            {
-                                Player.CastSpell(SpellSlot.E, Game.CursorPos);
-                            }
-                        }
-                        if (!ObjectManager.Player.IsInAutoAttackRange(target))
-                        {
-                            if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 1)
-                            {
-                                CastEcombo();
-                            }
-                            if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 0)
-                            {
-                                CastEmouse();
-                            }
-                            if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 2)
-                            {
-                                Player.CastSpell(SpellSlot.E, Game.CursorPos);
-                            }
-                        }
-                    }
-                }
-                if (ModesMenu1["LogibE"].Cast<ComboBox>().CurrentValue == 0)
-                {
-                    if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 1)
-                    {
-                        CastEcombo();
-                    }
-                    if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 0)
-                    {
-                        CastEmouse();
-                    }
-                    if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 2)
-                    {
-                        Player.CastSpell(SpellSlot.E, Game.CursorPos);
-                    }
+                    CastQ();
+                    CastExtendedQ();
                 }
 
-
-                if (W.IsReady() && ModesMenu1["ComboW"].Cast<CheckBox>().CurrentValue &&
-                    ObjectManager.Player.ManaPercent > ModesMenu1["ManaCW"].Cast<Slider>().CurrentValue)
+            if (W.IsReady() && ModesMenu1["ComboW"].Cast<CheckBox>().CurrentValue &&
+                ObjectManager.Player.ManaPercent > ModesMenu1["ManaCW"].Cast<Slider>().CurrentValue)
+            {
+                if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 0)
                 {
                     if (ModesMenu1["LogicW"].Cast<ComboBox>().CurrentValue == 0)
                     {
@@ -344,50 +281,15 @@ namespace GuTenTak.Lucian
                         CastWcombo();
                     }
                 }
-
+                if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 1)
+                {
+                    W.Cast(target);
+                }
             }
-        }
-        /*
-        public static void Combo()
-        {
-            var target = TargetSelector.GetTarget(Q.Range, DamageType.Mixed);
-            if (!Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
-                return;
-            if (target == null || !(target is AIHeroClient) || target.IsDead || target.IsInvulnerable || !target.IsEnemy || target.IsPhysicalImmune || target.IsZombie)
-                return;
 
-            var enemy = target as AIHeroClient;
-            if (enemy == null)
-                return;
 
-            if (ModesMenu1["ComboE"].Cast<CheckBox>().CurrentValue && E.IsReady())
-            {
-                castE();
-            }
-            else if (ModesMenu1["ComboQ"].Cast<CheckBox>().CurrentValue && Q.IsReady())
-            {
-                Q.Cast(enemy);
-                castQ1(enemy);
-            }
-            else if (ModesMenu1["ComboW"].Cast<CheckBox>().CurrentValue && W.IsReady())
-            {
-                W.Cast(W.GetPrediction(enemy).CastPosition);
-            }
-        }
-        */
 
-        internal static void aaCombo(AttackableUnit target, EventArgs args)
-        {
-            if (ModesMenu1["LogicAA"].Cast<ComboBox>().CurrentValue == 1 && Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
-            {
-                if (target == null || !(target is AIHeroClient) || target.IsDead || target.IsInvulnerable || !target.IsEnemy || target.IsPhysicalImmune || target.IsZombie)
-                    return;
-
-                var enemy = target as AIHeroClient;
-                if (enemy == null)
-                    return;
-
-                if (ModesMenu1["ComboE"].Cast<CheckBox>().CurrentValue && E.IsReady())
+             if (E.IsReady() && ModesMenu1["ComboE"].Cast<CheckBox>().CurrentValue)
                 {
                     if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 1)
                     {
@@ -402,25 +304,10 @@ namespace GuTenTak.Lucian
                         Player.CastSpell(SpellSlot.E, Game.CursorPos);
                     }
                 }
-                else if (ModesMenu1["ComboQ"].Cast<CheckBox>().CurrentValue && Q.IsReady())
-                {
-                    Q.Cast(enemy);
-                    castQ1(enemy);
-                }
-                else if (ModesMenu1["ComboW"].Cast<CheckBox>().CurrentValue && W.IsReady())
-                {
-                    if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 0)
-                    {
-                        W.Cast(enemy);
-                    }
-                    if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 1)
-                    {
-                        W.Cast(W.GetPrediction(enemy).CastPosition);
-                    }
+                
 
-                }
+
             }
-        }
 
         public static void Harass()
         {
@@ -486,19 +373,19 @@ PlayerInstance.ServerPosition.Extend(m.ServerPosition, Q1.Range), 65)
 p.IsInside(x.ServerPosition)) >= 2
                                   select m)
                 {
-                        Q.Cast(m);
-                        break;
+                    Q.Cast(m);
+                    break;
                 }
             }
-                if (PlayerInstance.IsAttackingPlayer && W.IsReady() && ModesMenu2["FarmW"].Cast<CheckBox>().CurrentValue || PlayerInstance.HasBuff("lucianpassivebuff") && Program._Player.ManaPercent >= Program.ModesMenu2["ManaLW"].Cast<Slider>().CurrentValue)
-                {
-                    var minions =
-        EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,
-            PlayerInstance.Position, 500)
-            .FirstOrDefault(x => x.IsValidTarget(500));
+            if (PlayerInstance.IsAttackingPlayer && W.IsReady() && ModesMenu2["FarmW"].Cast<CheckBox>().CurrentValue || PlayerInstance.HasBuff("lucianpassivebuff") && Program._Player.ManaPercent >= Program.ModesMenu2["ManaLW"].Cast<Slider>().CurrentValue)
+            {
+                var minions =
+    EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,
+        PlayerInstance.Position, 500)
+        .FirstOrDefault(x => x.IsValidTarget(500));
                 if (minions != null)
-                W.Cast(minions);
-                }
+                    W.Cast(minions);
+            }
         }
         public static void JungleClear()
         {
@@ -519,6 +406,52 @@ p.IsInside(x.ServerPosition)) >= 2
                 if (monster != null && !PassiveUp)
                     W.Cast(monster.ServerPosition);
 
+            }
+        }
+
+        internal static void aaCombo(AttackableUnit target, EventArgs args)
+        {
+            if (ModesMenu1["LogicAA"].Cast<ComboBox>().CurrentValue == 1 && Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
+            {
+                if (target == null || !(target is AIHeroClient) || target.IsDead || target.IsInvulnerable || !target.IsEnemy || target.IsPhysicalImmune || target.IsZombie)
+                    return;
+
+                var enemy = target as AIHeroClient;
+                if (enemy == null)
+                    return;
+
+                if (ModesMenu1["ComboE"].Cast<CheckBox>().CurrentValue && E.IsReady())
+                {
+                    if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 1)
+                    {
+                        CastEcombo();
+                    }
+                    if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 0)
+                    {
+                        CastEmouse();
+                    }
+                    if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 2)
+                    {
+                        Player.CastSpell(SpellSlot.E, Game.CursorPos);
+                    }
+                }
+                else if (ModesMenu1["ComboQ"].Cast<CheckBox>().CurrentValue && Q.IsReady())
+                {
+                    Q.Cast(enemy);
+                    castQ1(enemy);
+                }
+                else if (ModesMenu1["ComboW"].Cast<CheckBox>().CurrentValue && W.IsReady())
+                {
+                    if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 0)
+                    {
+                        W.Cast(enemy);
+                    }
+                    if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 1)
+                    {
+                        W.Cast(W.GetPrediction(enemy).CastPosition);
+                    }
+
+                }
             }
         }
 
@@ -727,35 +660,6 @@ p.IsInside(x.ServerPosition)) >= 2
                 Player.SetSkinId((int)ModesMenu3["skinId"].Cast<ComboBox>().CurrentValue);
             }
         }
-
-        /*
-        internal static void Dash_OnDash(Obj_AI_Base sender, Dash.DashEventArgs e)
-        {
-            var Target = TargetSelector.GetTarget(Q.Range, DamageType.Physical);
-            var Qp = Q.GetPrediction(Target);
-            if (Qp.HitChance == HitChance.Dashing)
-            {
-                Q.Cast(Qp.CastPosition);
-                Chat.Print("Dash!");
-            }
-        }
-        */
-
-        /*
-        internal static void Dash_OnDash(Obj_AI_Base sender, Dash.DashEventArgs e)
-        {
-            if (ModesMenu1["Snipe"].Cast<CheckBox>().CurrentValue)
-            {
-                var Target = TargetSelector.GetTarget(Q.Range, DamageType.Physical);
-                var Qp = Q.GetPrediction(Target);
-                if (Q.GetPrediction(Target).HitChance >= HitChance.Dashing)
-                {
-                    Q.Cast(Q.GetPrediction(Target).CastPosition);
-                }
-            }
-            Chat.Print("Dash!");
-        }
-        */
 
         internal static void Gapcloser_OnGapCloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs gapcloser)
         {
@@ -1036,7 +940,7 @@ p.IsInside(x.ServerPosition)) >= 2
                 else
                     Player.CastSpell(SpellSlot.E, Game.CursorPos);
             }
-            if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 2) 
+            if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 2)
             {
                 Player.CastSpell(SpellSlot.E, Game.CursorPos);
             }

@@ -113,16 +113,15 @@ namespace GuTenTak.Lucian
                 ModesMenu1.Add("ManaCW", new Slider("Use W Mana %", 30));
                 ModesMenu1.AddSeparator();
                 ModesMenu1.AddLabel("Logic Configs");
-                ModesMenu1.Add("LogicAA", new ComboBox(" Combo Logic ", 0, "BASIC", "AA -> Combo"));
+                ModesMenu1.Add("LogicAA", new ComboBox(" Combo Logic ", 1, "Speed", "Full Damage in AA Range"));
                 ModesMenu1.Add("LogicW", new ComboBox(" Basic W Logic ", 1, "AARange", "Always"));
-                ModesMenu1.Add("LogibE", new ComboBox(" Basic E Logic ", 1, "Faster", "AA -> E"));
                 ModesMenu1.Add("WColision", new ComboBox(" W Collision ", 1, "Colision", "No Colision"));
                 ModesMenu1.Add("LogicE", new ComboBox(" E Logic ", 0, "E to Mouse(Safe position)", "E to Side", "E to Mouse"));
 
                 ModesMenu1.AddSeparator();
-                ModesMenu1.AddLabel("AutoHarass Configs");
-                ModesMenu1.Add("AutoHarass", new CheckBox("Use Q on AutoHarass", false));
-                ModesMenu1.Add("ManaAuto", new Slider("Mana %", 80));
+                //ModesMenu1.AddLabel("AutoHarass Configs");
+                //ModesMenu1.Add("AutoHarass", new CheckBox("Use Q on AutoHarass", false));
+               // ModesMenu1.Add("ManaAuto", new Slider("Mana %", 80));
 
                 ModesMenu1.AddLabel("Harass Configs");
                 ModesMenu1.Add("HWeaving", new CheckBox("Harass Use Passive", true));
@@ -145,7 +144,7 @@ namespace GuTenTak.Lucian
                 ModesMenu2.Add("ManaLQ", new Slider("Mana %", 40));
                 ModesMenu2.Add("FarmW", new CheckBox("Use W on LaneClear", true));
                 ModesMenu2.Add("ManaLW", new Slider("Mana %", 40));
-                ModesMenu2.AddLabel("Jungle Clear Config"); 
+                ModesMenu2.AddLabel("Jungle Clear Config");
                 ModesMenu2.Add("JungleQ", new CheckBox("Use Q on JungleClear", true));
                 ModesMenu2.Add("ManaJQ", new Slider("Mana %", 40));
                 ModesMenu2.Add("JungleW", new CheckBox("Use W on JungleClear", true));
@@ -184,9 +183,9 @@ namespace GuTenTak.Lucian
                 ModesMenu3.Add("PoppyUlt", new CheckBox("Poppy R", true));
                 ModesMenu3.Add("QssUltDelay", new Slider("Use QSS Delay(ms) for Ult", 250, 0, 1000));
 
-              ModesMenu3.AddLabel("Skin Hack");
-              ModesMenu3.Add("skinhack", new CheckBox("Activate Skin hack", false));
-              ModesMenu3.Add("skinId", new ComboBox("Skin Mode", 0, "Default", "1", "2", "3", "4", "5", "6", "7", "8"));
+                ModesMenu3.AddLabel("Skin Hack");
+                ModesMenu3.Add("skinhack", new CheckBox("Activate Skin hack", false));
+                ModesMenu3.Add("skinId", new ComboBox("Skin Mode", 0, "Default", "1", "2", "3", "4", "5", "6", "7", "8"));
 
                 DrawMenu = Menu.AddSubMenu("Draws", "DrawLucian");
                 DrawMenu.Add("drawA", new CheckBox(" Draw Real AA", true));
@@ -267,40 +266,42 @@ namespace GuTenTak.Lucian
                     {
                         Common.AutoQ();
                     }*/
-                    if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
+                if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
+                {
+                    if (ModesMenu1["LogicAA"].Cast<ComboBox>().CurrentValue == 0)
                     {
-
                         Common.Combo();
-                        Common.ItemUsage();
                     }
-                    if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Harass))
-                    {
-                        Common.Harass();
-                    }
+                    Common.ItemUsage();
+                }
+                if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Harass))
+                {
+                    Common.Harass();
+                }
 
-                    if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.LaneClear))
-                    {
+                if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.LaneClear))
+                {
 
-                        Common.LaneClear();
+                    Common.LaneClear();
 
-                    }
+                }
 
-                    if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.JungleClear))
-                    {
+                if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.JungleClear))
+                {
 
-                        Common.JungleClear();
-                    }
+                    Common.JungleClear();
+                }
 
-                    if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.LastHit))
-                    {
-                        Common.LastHit();
+                if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.LastHit))
+                {
+                    Common.LastHit();
 
-                    }
-                    if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Flee))
-                    {
-                        Common.Flee();
+                }
+                if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Flee))
+                {
+                    Common.Flee();
 
-                    }
+                }
             }
             catch (Exception e)
             {
@@ -310,7 +311,7 @@ namespace GuTenTak.Lucian
 
         public static void OnTick(EventArgs args)
         {
-           Common.Skinhack();
+            Common.Skinhack();
             if (lastTarget != null)
             {
                 if (lastTarget.IsVisible)
