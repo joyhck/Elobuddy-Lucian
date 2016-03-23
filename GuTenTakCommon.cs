@@ -315,7 +315,7 @@ namespace GuTenTak.Lucian
                         }
                     }
                 }
-                else
+                if (ModesMenu1["LogibE"].Cast<ComboBox>().CurrentValue == 0)
                 {
                     if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 1)
                     {
