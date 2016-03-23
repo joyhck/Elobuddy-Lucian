@@ -265,8 +265,8 @@ namespace GuTenTak.Lucian
 
                 if (Q.IsReady() && ModesMenu1["ComboQ"].Cast<CheckBox>().CurrentValue)
                 {
-                    CastQ();
-                    CastExtendedQ();
+                        CastQ();
+                        CastExtendedQ();
                 }
 
                 if (E.IsReady() && ModesMenu1["ComboE"].Cast<CheckBox>().CurrentValue)
@@ -298,7 +298,7 @@ namespace GuTenTak.Lucian
                             CastWcombo();
                         }
                     }
-                    if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 1)
+                    else
                     {
                         W.Cast(target);
                     }
@@ -603,7 +603,10 @@ p.IsInside(x.ServerPosition)) >= 2
 
             if (ModesMenu3["useYoumuu"].Cast<CheckBox>().CurrentValue && Program.Youmuu.IsOwned() && Program.Youmuu.IsReady())
             {
-                Program.Youmuu.Cast();
+                if (ObjectManager.Player.CountEnemiesInRange(1500) < 1)
+                {
+                    Program.Youmuu.Cast();
+                }
             }
             if (hextech != null)
             {
