@@ -114,9 +114,9 @@ namespace GuTenTak.Lucian
                 ModesMenu1.AddSeparator();
                 ModesMenu1.AddLabel("Logic Configs");
                 ModesMenu1.Add("LogicAA", new ComboBox(" Combo Logic ", 0, "BASIC", "AA -> Combo"));
-                ModesMenu1.Add("LogicW", new ComboBox(" Basic W Logic ", 0, "AARange", "Always"));
+                ModesMenu1.Add("LogicW", new ComboBox(" Basic W Logic ", 1, "AARange", "Always"));
                 ModesMenu1.Add("LogibE", new ComboBox(" Basic E Logic ", 1, "Faster", "AA -> E"));
-                ModesMenu1.Add("WColision", new ComboBox(" W Collision ", 0, "Colision", "No Colision"));
+                ModesMenu1.Add("WColision", new ComboBox(" W Collision ", 1, "Colision", "No Colision"));
                 ModesMenu1.Add("LogicE", new ComboBox(" E Logic ", 0, "E to Mouse(Save position)", "E to Side", "E to Mouse"));
 
                 ModesMenu1.AddSeparator();
