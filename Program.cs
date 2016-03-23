@@ -257,8 +257,8 @@ namespace GuTenTak.Lucian
         {
             try
             {
-                var AutoHarass = ModesMenu1["AutoHarass"].Cast<CheckBox>().CurrentValue;
-                var ManaAuto = ModesMenu1["ManaAuto"].Cast<Slider>().CurrentValue;
+                //var AutoHarass = ModesMenu1["AutoHarass"].Cast<CheckBox>().CurrentValue;
+                //var ManaAuto = ModesMenu1["ManaAuto"].Cast<Slider>().CurrentValue;
                 Common.KillSteal();
 
                 /*
@@ -268,10 +268,7 @@ namespace GuTenTak.Lucian
                     }*/
                 if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo))
                 {
-                    if (ModesMenu1["LogicAA"].Cast<ComboBox>().CurrentValue == 0)
-                    {
-                        Common.Combo();
-                    }
+                    Common.Combo();
                     Common.ItemUsage();
                 }
                 if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Harass))

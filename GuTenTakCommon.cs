@@ -246,6 +246,8 @@ namespace GuTenTak.Lucian
 
         public static void Combo()
         {
+            if (ModesMenu1["LogicAA"].Cast<ComboBox>().CurrentValue == 0)
+            {
                 var target = TargetSelector.SelectedTarget != null &&
                            TargetSelector.SelectedTarget.Distance(ObjectManager.Player) < 2000
                   ? TargetSelector.SelectedTarget
@@ -267,29 +269,7 @@ namespace GuTenTak.Lucian
                     CastExtendedQ();
                 }
 
-            if (W.IsReady() && ModesMenu1["ComboW"].Cast<CheckBox>().CurrentValue &&
-                ObjectManager.Player.ManaPercent > ModesMenu1["ManaCW"].Cast<Slider>().CurrentValue)
-            {
-                if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 0)
-                {
-                    if (ModesMenu1["LogicW"].Cast<ComboBox>().CurrentValue == 0)
-                    {
-                        CastWinRange();
-                    }
-                    if (ModesMenu1["LogicW"].Cast<ComboBox>().CurrentValue == 1)
-                    {
-                        CastWcombo();
-                    }
-                }
-                if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 1)
-                {
-                    W.Cast(target);
-                }
-            }
-
-
-
-             if (E.IsReady() && ModesMenu1["ComboE"].Cast<CheckBox>().CurrentValue)
+                if (E.IsReady() && ModesMenu1["ComboE"].Cast<CheckBox>().CurrentValue)
                 {
                     if (ModesMenu1["LogicE"].Cast<ComboBox>().CurrentValue == 1)
                     {
@@ -304,7 +284,27 @@ namespace GuTenTak.Lucian
                         Player.CastSpell(SpellSlot.E, Game.CursorPos);
                     }
                 }
-                
+
+                if (W.IsReady() && ModesMenu1["ComboW"].Cast<CheckBox>().CurrentValue && ObjectManager.Player.ManaPercent > ModesMenu1["ManaCW"].Cast<Slider>().CurrentValue)
+                {
+                    if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 0)
+                    {
+                        if (ModesMenu1["LogicW"].Cast<ComboBox>().CurrentValue == 0)
+                        {
+                            CastWinRange();
+                        }
+                        if (ModesMenu1["LogicW"].Cast<ComboBox>().CurrentValue == 1)
+                        {
+                            CastWcombo();
+                        }
+                    }
+                    if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 1)
+                    {
+                        W.Cast(target);
+                    }
+                }
+
+            }
 
 
             }
