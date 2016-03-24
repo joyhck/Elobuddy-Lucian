@@ -713,7 +713,7 @@ p.IsInside(x.ServerPosition)) >= 2
                             }
                         }
 
-                            if (DamageLib.RCalc(enemy) * 10 >= enemy.Health)
+                            if (DamageLib.RCalc(enemy) * 8 >= enemy.Health)
                             {
                                 var Rp = R.GetPrediction(enemy);
                                 if (R.IsReady() && R.IsInRange(enemy) && Program.ModesMenu1["KR"].Cast<CheckBox>().CurrentValue && Rp.HitChance >= HitChance.High && !enemy.IsInvulnerable)
