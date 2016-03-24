@@ -342,13 +342,16 @@ namespace GuTenTak.Lucian
                 ObjectManager.Player.ManaPercent < ModesMenu1["ManaHW"].Cast<Slider>().CurrentValue)
                 return;
             {
-                if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 0)
+                if (ModesMenu1["HarassW"].Cast<CheckBox>().CurrentValue)
                 {
-                    CastWinRange();
-                }
-                if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 1)
-                {
-                    CastWcombo();
+                    if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 0)
+                    {
+                        CastWinRange();
+                    }
+                    if (ModesMenu1["WColision"].Cast<ComboBox>().CurrentValue == 1)
+                    {
+                        CastWcombo();
+                    }
                 }
             }
         }
@@ -710,8 +713,6 @@ p.IsInside(x.ServerPosition)) >= 2
                             }
                         }
 
-                        if (PlayerInstance.AttackSpeedMod < 1.25f)
-                        {
                             if (DamageLib.RCalc(enemy) * 10 >= enemy.Health)
                             {
                                 var Rp = R.GetPrediction(enemy);
@@ -720,23 +721,12 @@ p.IsInside(x.ServerPosition)) >= 2
                                     R.Cast(Rp.CastPosition);
                                 }
                             }
-                        }
-                        if (PlayerInstance.AttackSpeedMod > 1.25f)
-                        {
-                            if (DamageLib.RCalc(enemy) * 5 >= enemy.Health)
-                            {
-                                var Rp = R.GetPrediction(enemy);
-                                if (R.IsReady() && R.IsInRange(enemy) && Program.ModesMenu1["KR"].Cast<CheckBox>().CurrentValue && Rp.HitChance >= HitChance.High && !enemy.IsInvulnerable)
-                                {
-                                    R.Cast(Rp.CastPosition);
-                                }
-                            }
+ 
                         }
 
                     }
                 }
             }
-        }
 
         /*
         public static new void AutoQ()
