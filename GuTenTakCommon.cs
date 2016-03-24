@@ -606,7 +606,7 @@ p.IsInside(x.ServerPosition)) >= 2
 
             if (ModesMenu3["useYoumuu"].Cast<CheckBox>().CurrentValue && Program.Youmuu.IsOwned() && Program.Youmuu.IsReady())
             {
-                if (ObjectManager.Player.CountEnemiesInRange(1500) < 1)
+                if (ObjectManager.Player.CountEnemiesInRange(1500) == 1)
                 {
                     Program.Youmuu.Cast();
                 }
