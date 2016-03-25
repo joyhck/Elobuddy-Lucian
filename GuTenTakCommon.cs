@@ -355,10 +355,65 @@ namespace GuTenTak.Lucian
                 }
             }
         }
-        public static void LastHit()
+        public static void LJClear(AttackableUnit target, EventArgs args)
         {
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.LaneClear))
+            { 
 
+                if (Q.IsReady() && ModesMenu2["FarmQ"].Cast<CheckBox>().CurrentValue || PlayerInstance.HasBuff("lucianpassivebuff") && Program._Player.ManaPercent >= Program.ModesMenu2["ManaLQ"].Cast<Slider>().CurrentValue)
+                {
+                    var minions =
+                        EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,
+                            PlayerInstance.Position, Q.Range);
+                    var aiMinions = minions as Obj_AI_Minion[] ?? minions.ToArray();
+
+                    foreach (var m in from m in aiMinions
+                                      let p = new Geometry.Polygon.Rectangle((Vector2)PlayerInstance.ServerPosition,
+    PlayerInstance.ServerPosition.Extend(m.ServerPosition, Q1.Range), 65)
+                                      where aiMinions.Count(x =>
+    p.IsInside(x.ServerPosition)) >= 2
+                                      select m)
+                    {
+                        Q.Cast(m);
+                        break;
+                    }
+                }
+                if (W.IsReady() && ModesMenu2["FarmW"].Cast<CheckBox>().CurrentValue || PlayerInstance.HasBuff("lucianpassivebuff") && Program._Player.ManaPercent >= Program.ModesMenu2["ManaLW"].Cast<Slider>().CurrentValue)
+                {
+                    var minions =
+        EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy,
+            PlayerInstance.Position, 500)
+            .FirstOrDefault(x => x.IsValidTarget(500));
+                    if (minions != null)
+                        W.Cast(minions);
+                }
+            }
+
+            // LaneClear
+            if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.JungleClear))
+            {
+                if (Q.IsReady() && ModesMenu2["JungleQ"].Cast<CheckBox>().CurrentValue || PlayerInstance.HasBuff("lucianpassivebuffmstl") && Program._Player.ManaPercent >= Program.ModesMenu2["ManaJQ"].Cast<Slider>().CurrentValue)
+                {
+                    var monster =
+                        EntityManager.MinionsAndMonsters.GetJungleMonsters(PlayerInstance.ServerPosition, Q.Range)
+                            .FirstOrDefault(x => x.IsValidTarget(Q.Range));
+                    if (monster != null)
+                        Q.Cast(monster);
+                }
+
+                if (W.IsReady() && ModesMenu2["JungleW"].Cast<CheckBox>().CurrentValue || PlayerInstance.HasBuff("lucianpassivebuff") && Program._Player.ManaPercent >= Program.ModesMenu2["ManaJW"].Cast<Slider>().CurrentValue)
+                {
+                    var monster =
+                        EntityManager.MinionsAndMonsters.GetJungleMonsters(PlayerInstance.ServerPosition, 600)
+                            .FirstOrDefault(x => x.IsValidTarget());
+                    if (monster != null && !PassiveUp)
+                        W.Cast(monster.ServerPosition);
+
+                }
+            }
         }
+      
+        /*
         public static void LaneClear()
         {
 
@@ -410,7 +465,7 @@ p.IsInside(x.ServerPosition)) >= 2
                     W.Cast(monster.ServerPosition);
 
             }
-        }
+        }*/
 
         internal static void aaCombo(AttackableUnit target, EventArgs args)
         {
@@ -457,6 +512,7 @@ p.IsInside(x.ServerPosition)) >= 2
                 }
             }
         }
+        
 
         public static void Flee()
         {

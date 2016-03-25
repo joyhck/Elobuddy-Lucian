@@ -75,6 +75,7 @@ namespace GuTenTak.Lucian
             Obj_AI_Base.OnBuffGain += Common.OnBuffGain;
             Game.OnTick += OnTick;
             Orbwalker.OnPostAttack += Common.aaCombo;
+            Orbwalker.OnPostAttack += Common.LJClear;
             Player.OnBasicAttack += Player_OnBasicAttack;
             SkinBase = Player.Instance.SkinId;
             // Item
@@ -279,19 +280,19 @@ namespace GuTenTak.Lucian
                 if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.LaneClear))
                 {
 
-                    Common.LaneClear();
+                    //Common.LaneClear();
 
                 }
 
                 if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.JungleClear))
                 {
 
-                    Common.JungleClear();
+                    //Common.JungleClear();
                 }
 
                 if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.LastHit))
                 {
-                    Common.LastHit();
+                    //Common.LastHit();
 
                 }
                 if (Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Flee))
