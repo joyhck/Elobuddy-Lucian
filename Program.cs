@@ -87,8 +87,8 @@ namespace GuTenTak.Lucian
                 }
 
                 Q = new Spell.Targeted(SpellSlot.Q, 675);
-                Q1 = new Spell.Skillshot(SpellSlot.Q, 1140, SkillShotType.Linear, 350, int.MaxValue, 75);
-                W = new Spell.Skillshot(SpellSlot.W, 1000, SkillShotType.Linear, 250, 1600, 100);
+                Q1 = new Spell.Skillshot(SpellSlot.Q, 940, SkillShotType.Linear, 350, int.MaxValue, 75);
+                W = new Spell.Skillshot(SpellSlot.W, 900, SkillShotType.Linear, 250, 1600, 100);
                 W1 = new Spell.Skillshot(SpellSlot.W, 500, SkillShotType.Linear, 250, 1600, 100);
                 E = new Spell.Skillshot(SpellSlot.E, 475, SkillShotType.Linear);
                 R = new Spell.Skillshot(SpellSlot.R, 1400, SkillShotType.Linear, 500, 2800, 110);
