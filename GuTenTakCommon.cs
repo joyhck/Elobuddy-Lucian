@@ -714,7 +714,7 @@ p.IsInside(x.ServerPosition)) >= 2
                 Core.DelayAction(() => Simitar.Cast(), ModesMenu3["QssUltDelay"].Cast<Slider>().CurrentValue);
             }
         }
-
+/*
         public static void Skinhack()
         {
             if (ModesMenu3["skinhack"].Cast<CheckBox>().CurrentValue)
@@ -722,7 +722,7 @@ p.IsInside(x.ServerPosition)) >= 2
                 Player.SetSkinId((int)ModesMenu3["skinId"].Cast<ComboBox>().CurrentValue);
             }
         }
-
+*/
         internal static void Gapcloser_OnGapCloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs gapcloser)
         {
             if (Program.ModesMenu3["AntiGap"].Cast<CheckBox>().CurrentValue)
