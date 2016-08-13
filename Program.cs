@@ -195,7 +195,19 @@ namespace GuTenTak.Lucian
                 DrawMenu.Add("drawW", new CheckBox(" Draw W", true));
                 DrawMenu.Add("drawE", new CheckBox(" Draw E", true));
                 DrawMenu.Add("drawR", new CheckBox(" Draw R", false));
-
+                
+                if (ModesMenu3["skinhack"].Cast<CheckBox>().CurrentValue)
+                    Player.SetSkinId(ModesMenu3["skinId"].Cast<ComboBox>().CurrentValue);
+                ModesMenu3["skinId"].Cast<ComboBox>().OnValueChange += (sender, vargs) =>
+                {
+                    if (ModesMenu3["skinhack"].Cast<CheckBox>().CurrentValue)
+                        Player.SetSkinId(vargs.NewValue);
+                }
+                ModesMenu3["skinhack"].Cast<CheckBox>().OnValueChange += (sender, vargs) =>
+                {
+                    if (ModesMenu3["skinhack"].Cast<CheckBox>().CurrentValue)
+                        Player.SetSkinId(vargs.NewValue);
+                }
             }
 
             catch (Exception e)
