@@ -205,8 +205,10 @@ namespace GuTenTak.Lucian
                 };
                 ModesMenu3["skinhack"].Cast<CheckBox>().OnValueChange += (sender, vargs) =>
                 {
-                    if (ModesMenu3["skinhack"].Cast<CheckBox>().CurrentValue)
-                        Player.SetSkinId(vargs.NewValue);
+                    if (vargs.NewValue)
+                        Player.SetSkinId(ModesMenu3["skinId"].Cast<ComboBox>().CurrentValue);
+                    else
+                        Player.SetSkinId(0);
                 };
             }
 
@@ -321,7 +323,7 @@ namespace GuTenTak.Lucian
 
         public static void OnTick(EventArgs args)
         {
-            Common.Skinhack();
+            //Common.Skinhack();
             if (lastTarget != null)
             {
                 if (lastTarget.IsVisible)
