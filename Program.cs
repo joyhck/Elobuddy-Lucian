@@ -202,12 +202,12 @@ namespace GuTenTak.Lucian
                 {
                     if (ModesMenu3["skinhack"].Cast<CheckBox>().CurrentValue)
                         Player.SetSkinId(vargs.NewValue);
-                }
+                };
                 ModesMenu3["skinhack"].Cast<CheckBox>().OnValueChange += (sender, vargs) =>
                 {
                     if (ModesMenu3["skinhack"].Cast<CheckBox>().CurrentValue)
                         Player.SetSkinId(vargs.NewValue);
-                }
+                };
             }
 
             catch (Exception e)
